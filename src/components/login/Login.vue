@@ -52,7 +52,7 @@ export default {
             return this.$message.error('用户名或密码不正确')
           }
           this.$message.success('登录成功')
-          window.sessionStorage.setItem('ec_token', res.data.token)
+          window.sessionStorage.setItem('token', res.data.token)
           this.$router.push('/home')
         }
       })
