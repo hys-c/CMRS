@@ -6,6 +6,8 @@ import Login from 'components/login/Login'
 import Home from 'components/home/Home'
 import Welcome from 'components/home/childComponents/Welcome'
 import Users from 'components/home/childComponents/Users'
+import Rights from 'components/power/Power'
+import Roles from 'components/power/Roles'
 // 导入字体图标
 import 'assets/fonts/iconfont.css'
 // 导入axios
@@ -30,7 +32,9 @@ const routes = [
     redirect: '/welcome',
     children: [
       { path: '/welcome', component: Welcome },
-      { path: '/users', component: Users }
+      { path: '/users', component: Users },
+      { path: '/rights', component: Rights },
+      { path: '/roles', component: Roles }
     ]
   }
 ]

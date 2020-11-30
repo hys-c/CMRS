@@ -350,3 +350,13 @@ template {
 html, body, #app {
   height: 100%;
 }
+#app {
+  min-width: 1366px;
+}
+
+.el-breadcrumb {
+  margin-bottom: 20px;
+}
+.el-table {
+  margin-top: 15px;
+}

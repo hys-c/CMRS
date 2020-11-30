@@ -101,6 +101,7 @@
               type="warning"
               icon="el-icon-setting"
               size="small"
+              @click="disattributeRole(scope.row)"
             ></el-button>
           </el-tooltip>
         </template>
@@ -146,6 +147,38 @@
         <el-button type="primary" @click="editUser">确 定</el-button>
       </span>
     </el-dialog>
+    <!-- 分配角色对话框  -->
+    <el-dialog
+      title="分配角色"
+      :visible.sync="disattributeRoleVisable"
+      width="30%"
+      @close="disattributeRoleClose"
+    >
+      <!-- 内容主题区域 -->
+      <div>
+        <p>用户名是：{{ disattributeRoleInfo.username }}</p>
+        <p>用户角色是：{{ disattributeRoleInfo.role_name }}</p>
+        <p>
+          选择新的角色：
+          <el-select v-model="selectedId" placeholder="请选择">
+            <el-option
+              v-for="item in roleList"
+              :key="item.id"
+              :label="item.roleName"
+              :value="item.id"
+            >
+            </el-option>
+          </el-select>
+        </p>
+      </div>
+      <!-- 尾部区域 -->
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="disattributeRoleVisable = false">取 消</el-button>
+        <el-button type="primary" @click="sureDisattributeUser"
+          >确 定</el-button
+        >
+      </span>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -174,14 +207,18 @@ export default {
       },
       total: 0,
       userList: [],
+      roleList: [],
+      selectedId: '',
       dialogVisible: false,
       editDialogVisible: false,
+      disattributeRoleVisable: false,
       addForm: {
         username: '',
         password: '',
         email: '',
         mobile: ''
       },
+      disattributeRoleInfo: {},
       editForm: {},
       addFormRules: {
         username: [
@@ -311,15 +348,31 @@ export default {
         this.$message.success('删除成功')
         this.getUserList()
       }
+    },
+    async disattributeRole(role) {
+      const { data: res } = await this.$http.get('roles')
+      if (res.meta.status !== 200) {
+        this.$message.error('获取角色列表失败')
+      }
+      this.roleList = res.data
+      this.disattributeRoleInfo = role
+      this.disattributeRoleVisable = true
+    },
+    disattributeRoleClose() {},
+    async sureDisattributeUser() {
+      if (!this.selectedId) {
+        return this.$message.error('请选择一个角色')
+      }
+      const { data: res } = await this.$http.put(`users/${this.selectedId}`, {
+        rid: this.disattributeRoleInfo.id
+      })
+      if (res.meta.status !== 200) {
+        this.$message.error('修改角色失败')
+      }
+      this.$message.success('修改角色成功')
+      this.getUserList()
     }
   }
 }
 </script>
-<style lang="less" scoped>
-.el-breadcrumb {
-  margin-bottom: 20px;
-}
-.el-table {
-  margin-top: 15px;
-}
-</style>
+<style lang="less" scoped></style>
