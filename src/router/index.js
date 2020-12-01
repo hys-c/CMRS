@@ -8,6 +8,7 @@ import Welcome from 'components/home/childComponents/Welcome'
 import Users from 'components/home/childComponents/Users'
 import Rights from 'components/power/Power'
 import Roles from 'components/power/Roles'
+import Cate from 'components/goods/Cate'
 // 导入字体图标
 import 'assets/fonts/iconfont.css'
 // 导入axios
@@ -34,7 +35,8 @@ const routes = [
       { path: '/welcome', component: Welcome },
       { path: '/users', component: Users },
       { path: '/rights', component: Rights },
-      { path: '/roles', component: Roles }
+      { path: '/roles', component: Roles },
+      { path: '/categories', component: Cate }
     ]
   }
 ]
