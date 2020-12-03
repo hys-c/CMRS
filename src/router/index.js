@@ -9,6 +9,7 @@ import Users from 'components/home/childComponents/Users'
 import Rights from 'components/power/Power'
 import Roles from 'components/power/Roles'
 import Cate from 'components/goods/Cate'
+import Params from 'components/goods/Params'
 // 导入字体图标
 import 'assets/fonts/iconfont.css'
 // 导入axios
@@ -36,7 +37,8 @@ const routes = [
       { path: '/users', component: Users },
       { path: '/rights', component: Rights },
       { path: '/roles', component: Roles },
-      { path: '/categories', component: Cate }
+      { path: '/categories', component: Cate },
+      { path: '/params', component: Params }
     ]
   }
 ]
