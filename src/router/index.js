@@ -12,6 +12,7 @@ import Cate from 'components/goods/Cate'
 import Params from 'components/goods/Params'
 import GoodsList from 'components/goods/GoodsList'
 import AddGoods from 'components/goods/AddGoods'
+import Order from 'components/order/Order'
 // 导入字体图标
 import 'assets/fonts/iconfont.css'
 // 导入axios
@@ -45,7 +46,8 @@ const routes = [
         path: '/goods',
         component: GoodsList
       },
-      { path: '/goods/add', component: AddGoods }
+      { path: '/goods/add', component: AddGoods },
+      { path: '/orders', component: Order }
     ]
   }
 ]
